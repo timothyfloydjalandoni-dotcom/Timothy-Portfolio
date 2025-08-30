@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timothy Personal Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home">
+                    <video class="logo-video" autoplay muted loop playsinline>
+                        <source src="Logo animation.mp4" type="video/mp4">
+                    </video>
+                    <span>My Portfolio</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#skills" class="nav-link">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#projects" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Background Effects -->
+    <div class="background-effects">
+        <div class="grid-overlay"></div>
+        <div class="floating-particles"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Cybersecurity Student</span>
+                </div>
+                
+                <div class="terminal-intro">
+                    <div class="terminal-header">
+                        <span class="terminal-dot red"></span>
+                        <span class="terminal-dot yellow"></span>
+                        <span class="terminal-dot green"></span>
+                        <span class="terminal-title">terminal.sh</span>
+                    </div>
+                    <div class="terminal-body">
+                        <p><span class="prompt">$</span> whoami</p>
+                        <p class="typing-text" id="typing-text"></p>
+                        <p><span class="prompt">$</span> <span class="cursor">|</span></p>
+                    </div>
+                </div>
+                
+                <h1 class="hero-title">
+                    Cybersecurity <span class="neon-text">Major</span>
+                </h1>
+                
+                <p class="hero-subtitle">Protecting Digital Assets • Ethical Hacking • Security Research</p>
+                
+                <div class="hero-features">
+                    <div class="feature-item">
+                        <i class="fas fa-lock"></i>
+                        <span>Penetration Testing</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-search"></i>
+                        <span>Digital Forensics</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-network-wired"></i>
+                        <span>Network Security</span>
+                    </div>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-code"></i>
+                        <span>View Projects</span>
+                        <div class="btn-glow"></div>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i>
+                        <span>Get In Touch</span>
+                        <div class="btn-glow"></div>
+                    </a>
+                    <a href="#about" class="btn btn-tertiary">
+                        <i class="fas fa-user-secret"></i>
+                        <span>About Me</span>
+                        <div class="btn-glow"></div>
+                    </a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-counter">
+                        <div class="stat-number" data-target="25">0</div>
+                        <div class="stat-label">CTF Wins</div>
+                    </div>
+                    <div class="stat-counter">
+                        <div class="stat-number" data-target="10">0</div>
+                        <div class="stat-label">Bug Bounties</div>
+                    </div>
+                    <div class="stat-counter">
+                        <div class="stat-number" data-target="5">0</div>
+                        <div class="stat-label">Certifications</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="cyber-grid">
+                    <div class="grid-line"></div>
+                    <div class="grid-line"></div>
+                    <div class="grid-line"></div>
+                    <div class="grid-line"></div>
+                </div>
+                <div class="security-shield">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="floating-elements">
+                    <div class="floating-element" style="--delay: 0s; --x: 20%; --y: 30%;">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="floating-element" style="--delay: 1s; --x: 80%; --y: 20%;">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div class="floating-element" style="--delay: 2s; --x: 70%; --y: 60%;">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <div class="floating-element" style="--delay: 3s; --x: 30%; --y: 70%;">
+                        <i class="fas fa-code"></i>
+                    </div>
+                </div>
+                <div class="scan-lines"></div>
+            </div>
+        </div>
+        
+        <div class="hero-scroll-indicator">
+            <div class="scroll-text">Scroll Down</div>
+            <div class="scroll-arrow">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-user-secret"></i>
+                About Me
+            </h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="about-image-container">
+                        <img src="magazine-cover.jpg.jpg" alt="Timothy's Magazine Cover - Men's Fashion" class="about-image">
+                        <div class="image-overlay"> 
+                            <span class="image-caption"></span>
+                        </div>
+                        <div class="image-badge">
+                            <i class="fas fa-star"></i>
+                            <span>Featured</span>
+                        </div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-filename">about_me.py</span>
+                            <div class="code-controls">
+                                <span class="control-dot red"></span>
+                                <span class="control-dot yellow"></span>
+                                <span class="control-dot green"></span>
+                            </div>
+                        </div>
+                        <div class="code-content">
+                            <p><span class="code-comment"># Cybersecurity Student & Ethical Hacker</span></p>
+                            <p><span class="code-keyword">class</span> <span class="code-class">CyberSecStudent</span>:</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-function">__init__</span>(self):</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.name = <span class="code-string">"Timothy Floyd C. Jalandoni"</span></p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.university = <span class="code-string">"University of St. La Salle Bacolod"</span></p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.passion = <span class="code-string">"Cybersecurity"</span></p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.goal = <span class="code-string">"Protecting digital world"</span></p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.specialties = [<span class="code-string">"Penetration Testing"</span>, <span class="code-string">"Digital Forensics"</span>, <span class="code-string">"Network Security"</span>]</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.certifications = [<span class="code-string">"CEH"</span>, <span class="code-string">"OSCP"</span>, <span class="code-string">"CompTIA Security+"</span>]</p>
+                        </div>
+                        <div class="code-footer">
+                            <span class="code-status">● Running</span>
+                            <span class="code-language">Python 3.9</span>
+                        </div>
+                    </div>
+                    
+                    <div class="about-description">
+                        <div class="description-card">
+                            <div class="card-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>Cybersecurity Enthusiast</h3>
+                                <p>I'm a passionate cybersecurity student with a deep interest in ethical hacking, penetration testing, and digital forensics. My journey in cybersecurity began with curiosity about how systems work and how to protect them from malicious actors.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="description-card">
+                            <div class="card-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>Academic Excellence</h3>
+                                <p>Currently pursuing my degree in Cybersecurity at <strong class="university-highlight">University of St. La Salle Bacolod</strong> while actively getting my certifications. I believe in continuous learning and staying updated with the latest security trends and threats.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="description-card">
+                            <div class="card-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>Future Goals</h3>
+                                <p>My mission is to become a leading cybersecurity professional, contributing to the protection of digital infrastructure and helping organizations build robust security frameworks. I'm committed to ethical hacking practices and responsible disclosure.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-stats">
+                    <div class="university-image-container">
+                        <img src="university-logo.png" alt="University of St. La Salle Bacolod" class="university-image">
+                        <div class="university-overlay">
+                            <span class="university-caption">My University</span>
+                        </div>
+                        <div class="university-badge">
+                            <i class="fas fa-award"></i>
+                            <span>Top Ranked</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item" data-stat="25">
+                            <div class="stat-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 class="stat-number">25+</h3>
+                                <p class="stat-label">CTF Challenges</p>
+                                <div class="stat-progress">
+                                    <div class="progress-bar" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-item" data-stat="10">
+                            <div class="stat-icon">
+                                <i class="fas fa-bug"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 class="stat-number">10+</h3>
+                                <p class="stat-label">Bug Bounties</p>
+                                <div class="stat-progress">
+                                    <div class="progress-bar" style="width: 70%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-item" data-stat="5">
+                            <div class="stat-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 class="stat-number">5+</h3>
+                                <p class="stat-label">Certifications</p>
+                                <div class="stat-progress">
+                                    <div class="progress-bar" style="width: 60%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-item" data-stat="100">
+                            <div class="stat-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 class="stat-number">100+</h3>
+                                <p class="stat-label">Security Projects</p>
+                                <div class="stat-progress">
+                                    <div class="progress-bar" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement-showcase">
+                        <h3 class="showcase-title">
+                            <i class="fas fa-medal"></i>
+                            Recent Achievements
+                        </h3>
+                        <div class="achievement-list">
+                            <div class="achievement-item">
+                                <div class="achievement-icon">
+                                    <i class="fas fa-crown"></i>
+                                </div>
+                                <div class="achievement-content">
+                                    <h4>CTF Champion</h4>
+                                    <p>1st Place - University Cybersecurity Competition</p>
+                                    <span class="achievement-date">December 2024</span>
+                                </div>
+                            </div>
+                            
+                            <div class="achievement-item">
+                                <div class="achievement-icon">
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <div class="achievement-content">
+                                    <h4>Security Certification</h4>
+                                    <p>CompTIA Security+ - Passed with Excellence</p>
+                                    <span class="achievement-date">November 2024</span>
+                                </div>
+                            </div>
+                            
+                            <div class="achievement-item">
+                                <div class="achievement-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="achievement-content">
+                                    <h4>Research Recognition</h4>
+                                    <p>Published Paper on Network Security</p>
+                                    <span class="achievement-date">October 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-cogs"></i>
+                Skills & Expertise
+            </h2>
+            <div class="skills-grid">
+                <div class="skill-category" data-category="pentesting">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-shield-virus"></i>
+                        </div>
+                        <h3>Penetration Testing</h3>
+                        <div class="skill-level">
+                            <span class="level-text">Expert</span>
+                            <div class="level-bar">
+                                <div class="level-fill" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Advanced penetration testing methodologies and tools for comprehensive security assessments.</p>
+                    </div>
+                    <div class="skill-list">
+                        <span class="skill-tag" data-tooltip="Kali Linux - Advanced penetration testing platform">Kali Linux</span>
+                        <span class="skill-tag" data-tooltip="Metasploit - Exploitation framework">Metasploit</span>
+                        <span class="skill-tag" data-tooltip="Burp Suite - Web application security testing">Burp Suite</span>
+                        <span class="skill-tag" data-tooltip="Nmap - Network discovery and security auditing">Nmap</span>
+                        <span class="skill-tag" data-tooltip="Wireshark - Network protocol analyzer">Wireshark</span>
+                        <span class="skill-tag" data-tooltip="John the Ripper - Password cracking tool">John the Ripper</span>
+                    </div>
+                    <div class="skill-actions">
+                        <button class="btn-skill-demo" onclick="showSkillDemo('pentesting')">
+                            <i class="fas fa-play"></i> Demo
+                        </button>
+                        <button class="btn-skill-cert" onclick="showSkillCert('pentesting')">
+                            <i class="fas fa-certificate"></i> Certifications
+                        </button>
+                    </div>
+                </div>
+
+                <div class="skill-category" data-category="programming">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Programming</h3>
+                        <div class="skill-level">
+                            <span class="level-text">Advanced</span>
+                            <div class="level-bar">
+                                <div class="level-fill" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Full-stack development with focus on security-first programming practices.</p>
+                    </div>
+                    <div class="skill-list">
+                        <span class="skill-tag" data-tooltip="HTML5 - Semantic markup and accessibility">HTML</span>
+                        <span class="skill-tag" data-tooltip="CSS3 - Advanced styling and animations">CSS</span>
+                        <span class="skill-tag" data-tooltip="JavaScript - ES6+ and modern frameworks">JavaScript</span>
+                        <span class="skill-tag" data-tooltip="C++ - System programming and algorithms">C++</span>
+                        <span class="skill-tag" data-tooltip="Python - Security automation and scripting">Python</span>
+                        <span class="skill-tag" data-tooltip="SQL - Database security and queries">SQL</span>
+                    </div>
+                    <div class="skill-actions">
+                        <button class="btn-skill-demo" onclick="showSkillDemo('programming')">
+                            <i class="fas fa-play"></i> Demo
+                        </button>
+                        <button class="btn-skill-cert" onclick="showSkillCert('programming')">
+                            <i class="fas fa-certificate"></i> Certifications
+                        </button>
+                    </div>
+                </div>
+
+                <div class="skill-category" data-category="network">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h3>Network Security</h3>
+                        <div class="skill-level">
+                            <span class="level-text">Expert</span>
+                            <div class="level-bar">
+                                <div class="level-fill" style="width: 88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Comprehensive network security implementation and monitoring solutions.</p>
+                    </div>
+                    <div class="skill-list">
+                        <span class="skill-tag" data-tooltip="Firewall Configuration - Advanced rule management">Firewall Config</span>
+                        <span class="skill-tag" data-tooltip="IDS/IPS - Intrusion detection and prevention">IDS/IPS</span>
+                        <span class="skill-tag" data-tooltip="VPN Setup - Secure remote access solutions">VPN Setup</span>
+                        <span class="skill-tag" data-tooltip="Network Analysis - Traffic monitoring and analysis">Network Analysis</span>
+                        <span class="skill-tag" data-tooltip="SIEM - Security information and event management">SIEM</span>
+                        <span class="skill-tag" data-tooltip="Network Segmentation - Zero trust architecture">Network Segmentation</span>
+                    </div>
+                    <div class="skill-actions">
+                        <button class="btn-skill-demo" onclick="showSkillDemo('network')">
+                            <i class="fas fa-play"></i> Demo
+                        </button>
+                        <button class="btn-skill-cert" onclick="showSkillCert('network')">
+                            <i class="fas fa-certificate"></i> Certifications
+                        </button>
+                    </div>
+                </div>
+
+                <div class="skill-category" data-category="forensics">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>Digital Forensics</h3>
+                        <div class="skill-level">
+                            <span class="level-text">Advanced</span>
+                            <div class="level-bar">
+                                <div class="level-fill" style="width: 82%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Digital evidence collection, analysis, and preservation for legal proceedings.</p>
+                    </div>
+                    <div class="skill-list">
+                        <span class="skill-tag" data-tooltip="Autopsy - Digital forensics platform">Autopsy</span>
+                        <span class="skill-tag" data-tooltip="Volatility - Memory forensics framework">Volatility</span>
+                        <span class="skill-tag" data-tooltip="FTK Imager - Forensic imaging tool">FTK Imager</span>
+                        <span class="skill-tag" data-tooltip="Sleuth Kit - File system analysis">Sleuth Kit</span>
+                        <span class="skill-tag" data-tooltip="EnCase - Enterprise forensics solution">EnCase</span>
+                        <span class="skill-tag" data-tooltip="Memory Analysis - RAM forensics">Memory Analysis</span>
+                    </div>
+                    <div class="skill-actions">
+                        <button class="btn-skill-demo" onclick="showSkillDemo('forensics')">
+                            <i class="fas fa-play"></i> Demo
+                        </button>
+                        <button class="btn-skill-cert" onclick="showSkillCert('forensics')">
+                            <i class="fas fa-certificate"></i> Certifications
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-laptop-code"></i>
+                Featured Projects
+            </h2>
+            <div class="projects-grid">
+                <div class="project-card" data-category="security">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-wifi"></i>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-dot active"></span>
+                            <span class="status-text">Active</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">WiFi Security Analyzer</h3>
+                        <p class="project-description">Comprehensive tool for analyzing WiFi security vulnerabilities and detecting rogue access points using Python and Scapy. Features real-time monitoring and detailed security reports.</p>
+                        <div class="project-features">
+                            <span class="feature-tag"><i class="fas fa-shield-alt"></i> Security</span>
+                            <span class="feature-tag"><i class="fas fa-chart-line"></i> Analytics</span>
+                            <span class="feature-tag"><i class="fas fa-eye"></i> Monitoring</span>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scapy</span>
+                            <span class="tech-tag">Tkinter</span>
+                            <span class="tech-tag">Wireless</span>
+                            <span class="tech-tag">Security</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-links">
+                            <a href="#" class="btn-link primary">
+                                <i class="fab fa-github"></i>
+                                <span>View Code</span>
+                            </a>
+                            <a href="#" class="btn-link secondary">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Live Demo</span>
+                            </a>
+                        </div>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-number">95%</span>
+                                <span class="stat-label">Accuracy</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">24/7</span>
+                                <span class="stat-label">Monitoring</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="ai">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-user-secret"></i>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-dot active"></span>
+                            <span class="status-text">Active</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Phishing Detection System</h3>
+                        <p class="project-description">Machine learning-based system to detect phishing emails and websites with 95% accuracy using natural language processing and advanced threat intelligence.</p>
+                        <div class="project-features">
+                            <span class="feature-tag"><i class="fas fa-brain"></i> AI/ML</span>
+                            <span class="feature-tag"><i class="fas fa-language"></i> NLP</span>
+                            <span class="feature-tag"><i class="fas fa-robot"></i> Automation</span>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Machine Learning</span>
+                            <span class="tech-tag">NLP</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">TensorFlow</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-links">
+                            <a href="#" class="btn-link primary">
+                                <i class="fab fa-github"></i>
+                                <span>View Code</span>
+                            </a>
+                            <a href="#" class="btn-link secondary">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Live Demo</span>
+                            </a>
+                        </div>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-number">95%</span>
+                                <span class="stat-label">Accuracy</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">10K+</span>
+                                <span class="stat-label">Scanned</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-dot completed"></span>
+                            <span class="status-text">Completed</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Password Strength Meter</h3>
+                        <p class="project-description">Advanced password strength analyzer with real-time feedback, security suggestions, and comprehensive strength scoring for creating secure passwords.</p>
+                        <div class="project-features">
+                            <span class="feature-tag"><i class="fas fa-key"></i> Security</span>
+                            <span class="feature-tag"><i class="fas fa-tachometer-alt"></i> Real-time</span>
+                            <span class="feature-tag"><i class="fas fa-lightbulb"></i> Smart Tips</span>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">Security</span>
+                            <span class="tech-tag">Validation</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-links">
+                            <a href="#" class="btn-link primary">
+                                <i class="fab fa-github"></i>
+                                <span>View Code</span>
+                            </a>
+                            <a href="#" class="btn-link secondary">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Live Demo</span>
+                            </a>
+                        </div>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">Secure</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">5K+</span>
+                                <span class="stat-label">Users</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="security">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-dot active"></span>
+                            <span class="status-text">Active</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Vulnerability Scanner</h3>
+                        <p class="project-description">Automated web application vulnerability scanner that identifies common security flaws like XSS, SQL injection, CSRF, and provides detailed remediation reports.</p>
+                        <div class="project-features">
+                            <span class="feature-tag"><i class="fas fa-search"></i> Scanning</span>
+                            <span class="feature-tag"><i class="fas fa-file-alt"></i> Reports</span>
+                            <span class="feature-tag"><i class="fas fa-tools"></i> Automation</span>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Requests</span>
+                            <span class="tech-tag">BeautifulSoup</span>
+                            <span class="tech-tag">Security</span>
+                            <span class="tech-tag">Testing</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-links">
+                            <a href="#" class="btn-link primary">
+                                <i class="fab fa-github"></i>
+                                <span>View Code</span>
+                            </a>
+                            <a href="#" class="btn-link secondary">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Live Demo</span>
+                            </a>
+                        </div>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-number">50+</span>
+                                <span class="stat-label">Vulnerabilities</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">100+</span>
+                                <span class="stat-label">Scans</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="forensics">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-dot completed"></span>
+                            <span class="status-text">Completed</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Digital Forensics Toolkit</h3>
+                        <p class="project-description">Collection of digital forensics tools for memory analysis, file recovery, and evidence collection in cybersecurity investigations and incident response.</p>
+                        <div class="project-features">
+                            <span class="feature-tag"><i class="fas fa-memory"></i> Memory</span>
+                            <span class="feature-tag"><i class="fas fa-file-recovery"></i> Recovery</span>
+                            <span class="feature-tag"><i class="fas fa-fingerprint"></i> Evidence</span>
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Volatility</span>
+                            <span class="tech-tag">Forensics</span>
+                            <span class="tech-tag">CLI</span>
+                            <span class="tech-tag">Analysis</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-links">
+                            <a href="#" class="btn-link primary">
+                                <i class="fab fa-github"></i>
+                                <span>View Code</span>
+                            </a>
+                            <a href="#" class="btn-link secondary">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Live Demo</span>
+                            </a>
+                        </div>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">Reliable</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">25+</span>
+                                <span class="stat-label">Tools</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-terminal"></i>
+                connect()
+            </h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="terminal-contact">
+                        <div class="terminal-header">
+                            <span class="terminal-dot red"></span>
+                            <span class="terminal-dot yellow"></span>
+                            <span class="terminal-dot green"></span>
+                            <span class="terminal-title">contact.sh</span>
+                        </div>
+                        <div class="terminal-body">
+                            <p><span class="prompt">$</span> cat contact.txt</p>
+                            <p><span class="output">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span></p>
+                            <p><span class="output">📧 Email: /timothyfloydjalandoni@gmail.com</span></p>
+
+                            <p><span class="output">💼 Facebook: /Timothy Floyd Canson Jalandoni</span></p>
+
+                            <p><span class="output">🐙 GitHub: /timothyfloydjalandoni-dotcom</span></p>
+
+                            <p><span class="output">🐦 X: @FloydJalandoni</span></p>
+                            <p><span class="output">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span></p>
+                            <p><span class="prompt">$</span> <span class="cursor">|</span></p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="footer-logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Personal Portfolio</span>
+                    </div>
+                    <p>Securing the digital future, one line of code at a time.</p>
+                </div>
+                <div class="footer-right">
+                    <p>&copy; 2025 Timothy Floyd Jalandoni. All rights reserved.</p>
+                    <p>Built with <span class="neon-text">❤️</span> and lots of coffee</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
