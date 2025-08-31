@@ -968,11 +968,12 @@ function setupAccessibilityFeatures() {
     });
 }
 
-// Enhanced Matrix Rain Effect - More Visible
+// Matrix Rain Background (entire website)
 function createMatrixRain() {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
-    
+
+    // Style so it covers the entire page
     canvas.style.cssText = `
         position: fixed;
         top: 0;
@@ -980,90 +981,62 @@ function createMatrixRain() {
         width: 100%;
         height: 100%;
         pointer-events: none;
-        z-index: -1;
-        opacity: 0.25;
+        z-index: -1;  /* stays behind all content */
+        opacity: 0.45;
     `;
-    
+
     document.body.appendChild(canvas);
-    
+
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    
+
     const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
     const charArray = chars.split('');
-    const fontSize = 16;
-    const columns = canvas.width / fontSize;
+    const fontSize = 20;
+    const columns = Math.floor(canvas.width / fontSize);
     const drops = [];
-    
-    // Initialize drops with random starting positions
+
+    // Initialize drops
     for (let x = 0; x < columns; x++) {
         drops[x] = Math.random() * -100;
     }
-    
+
     function draw() {
-        // Create a more subtle fade effect
-        ctx.fillStyle = 'rgba(10, 10, 10, 0.1)';
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.25)'; // darker background for contrast
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        // Draw the matrix characters
+
         for (let i = 0; i < drops.length; i++) {
-            // Random character selection
             const text = charArray[Math.floor(Math.random() * charArray.length)];
-            
-            // Create gradient effect for better visibility
-            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            gradient.addColorStop(0, '#00ff41');
-            gradient.addColorStop(0.5, '#00d4ff');
-            gradient.addColorStop(1, '#00ff41');
-            
-            ctx.fillStyle = gradient;
+
+            ctx.fillStyle = '#00ff41';
             ctx.font = `bold ${fontSize}px monospace`;
-            
-            // Add glow effect
+
+            // Glow effect
             ctx.shadowColor = '#00ff41';
-            ctx.shadowBlur = 8;
-            
-            // Draw the character
+            ctx.shadowBlur = 12;
+
             ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-            
-            // Reset shadow
             ctx.shadowBlur = 0;
-            
-            // Move drop down
+
             drops[i]++;
-            
-            // Reset drop when it goes off screen
+
             if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                 drops[i] = 0;
             }
         }
-        
-        // Add some floating particles for extra effect
-        for (let i = 0; i < 3; i++) {
-            const x = Math.random() * canvas.width;
-            const y = Math.random() * canvas.height;
-            const size = Math.random() * 3 + 1;
-            
-            ctx.fillStyle = 'rgba(0, 255, 65, 0.6)';
-            ctx.beginPath();
-            ctx.arc(x, y, size, 0, Math.PI * 2);
-            ctx.fill();
-        }
     }
-    
-    // Increase animation speed for better visibility
+
     setInterval(draw, 80);
-    
-    // Resize canvas on window resize with throttling
-    let resizeTimeout;
+
+    // Resize when window resizes
     window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        }, 100);
     });
 }
+
+// Start effect
+createMatrixRain();
 
 // Skill demo and certification functions
 function showSkillDemo(category) {
