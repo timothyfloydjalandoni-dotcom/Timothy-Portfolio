@@ -1,27 +1,45 @@
-// Cybersecurity Portfolio JavaScript - Enhanced Version
+/**
+ * Cybersecurity Portfolio JavaScript - Enhanced Version
+ * @author Timothy Floyd Jalandoni
+ * @version 2.0.0
+ */
 
-// DOM Content Loaded
+// ========================================
+// Main Initialization
+// ========================================
+
+// Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     initializePortfolio();
 });
 
-// Initialize all portfolio functions
+/**
+ * Initialize all portfolio functions with error handling
+ */
 function initializePortfolio() {
     try {
-        setupMobileNavigation();
-        setupTypingAnimation();
-        setupScrollAnimations();
-        setupNavigationHighlighting();
-        setupContactForm();
-        setupParticleEffects();
-        setupScrollToTop();
-        setupHoverEffects();
-        setupTerminalCursor();
+        // Core functionality
+    setupMobileNavigation();
+    setupTypingAnimation();
+    setupScrollAnimations();
+    setupNavigationHighlighting();
+        
+        // Interactive features
+    setupContactForm();
+    setupParticleEffects();
+    setupScrollToTop();
+    setupHoverEffects();
+    setupTerminalCursor();
         setupSkillsInteractions();
-            setupProjectInteractions();
-    setupPerformanceOptimizations();
-    setupAccessibilityFeatures();
-    setupHeroCounters();
+        setupProjectInteractions();
+        
+        // Performance and accessibility
+        setupPerformanceOptimizations();
+        setupAccessibilityFeatures();
+        setupHeroCounters();
+        setupSectionTitleInteractions();
+        
+        console.log('Portfolio initialized successfully');
     } catch (error) {
         console.error('Portfolio initialization error:', error);
         // Fallback to basic functionality
@@ -29,25 +47,37 @@ function initializePortfolio() {
     }
 }
 
-// Enhanced Mobile Navigation Toggle
+/**
+ * Enhanced Mobile Navigation Toggle with accessibility support
+ */
 function setupMobileNavigation() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
     const body = document.body;
 
-    if (hamburger && navMenu) {
+    if (!hamburger || !navMenu) {
+        console.warn('Mobile navigation elements not found');
+        return;
+    }
+
         hamburger.addEventListener('click', () => {
-            const isActive = hamburger.classList.contains('active');
-            
+        const isActive = hamburger.classList.contains('active');
+        
+        // Toggle menu state
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
-            body.style.overflow = isActive ? '' : 'hidden';
             
-            // Animate hamburger bars with better performance
+        // Update ARIA attributes
+        hamburger.setAttribute('aria-expanded', !isActive);
+        
+        // Prevent body scroll when menu is open
+        body.style.overflow = isActive ? '' : 'hidden';
+        
+        // Animate hamburger bars with better performance
             const bars = hamburger.querySelectorAll('.bar');
             bars.forEach((bar, index) => {
-                if (!isActive) {
+            if (!isActive) {
                     if (index === 0) bar.style.transform = 'rotate(45deg) translate(5px, 5px)';
                     if (index === 1) bar.style.opacity = '0';
                     if (index === 2) bar.style.transform = 'rotate(-45deg) translate(7px, -6px)';
@@ -63,6 +93,7 @@ function setupMobileNavigation() {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
                 body.style.overflow = '';
                 
                 const bars = hamburger.querySelectorAll('.bar');
@@ -78,11 +109,11 @@ function setupMobileNavigation() {
             if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
                 body.style.overflow = '';
             }
         });
     }
-}
 
 // Enhanced Typing Animation for Terminal
 function setupTypingAnimation() {
@@ -192,13 +223,13 @@ function setupScrollAnimations() {
     window.addEventListener('scroll', () => {
         if (!ticking) {
             requestAnimationFrame(() => {
-                const scrolled = window.pageYOffset;
-                const gridOverlay = document.querySelector('.grid-overlay');
-                
-                if (gridOverlay) {
-                    const rate = scrolled * 0.5;
-                    gridOverlay.style.transform = `translate(${rate}px, ${rate}px)`;
-                }
+        const scrolled = window.pageYOffset;
+        const gridOverlay = document.querySelector('.grid-overlay');
+        
+        if (gridOverlay) {
+            const rate = scrolled * 0.5;
+            gridOverlay.style.transform = `translate(${rate}px, ${rate}px)`;
+        }
                 ticking = false;
             });
             ticking = true;
@@ -269,33 +300,33 @@ function setupNavigationHighlighting() {
     window.addEventListener('scroll', () => {
         if (!ticking) {
             requestAnimationFrame(() => {
-                let current = '';
-                
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    if (window.pageYOffset >= sectionTop - 200) {
-                        current = section.getAttribute('id');
-                    }
-                });
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (window.pageYOffset >= sectionTop - 200) {
+                current = section.getAttribute('id');
+            }
+        });
 
-                // Update navigation
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${current}`) {
-                        link.classList.add('active');
-                    }
-                });
+        // Update navigation
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
 
-                // Update navbar background on scroll
-                const navbar = document.querySelector('.navbar');
+        // Update navbar background on scroll
+        const navbar = document.querySelector('.navbar');
                 if (navbar) {
-                    if (window.scrollY > 100) {
-                        navbar.style.background = 'rgba(10, 10, 10, 0.98)';
-                        navbar.style.boxShadow = '0 2px 20px rgba(0, 255, 65, 0.1)';
-                    } else {
-                        navbar.style.background = 'rgba(10, 10, 10, 0.95)';
-                        navbar.style.boxShadow = 'none';
+        if (window.scrollY > 100) {
+            navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+            navbar.style.boxShadow = '0 2px 20px rgba(0, 255, 65, 0.1)';
+        } else {
+            navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+            navbar.style.boxShadow = 'none';
                     }
                 }
                 ticking = false;
@@ -417,22 +448,22 @@ function validateForm() {
 // Submit form
 function submitForm(form) {
     const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-    submitBtn.disabled = true;
-    
+        const originalText = submitBtn.innerHTML;
+        
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
+        
     // Simulate form submission
-    setTimeout(() => {
-        showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+        setTimeout(() => {
+            showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
         form.reset();
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
         
         // Clear any remaining error states
         form.querySelectorAll('.error').forEach(field => {
             field.classList.remove('error');
-        });
+    });
     }, 2000);
 }
 
@@ -592,13 +623,13 @@ function setupScrollToTop() {
     window.addEventListener('scroll', () => {
         if (!ticking) {
             requestAnimationFrame(() => {
-                if (window.pageYOffset > 500) {
-                    scrollTopBtn.style.opacity = '1';
-                    scrollTopBtn.style.visibility = 'visible';
-                } else {
-                    scrollTopBtn.style.opacity = '0';
-                    scrollTopBtn.style.visibility = 'hidden';
-                }
+        if (window.pageYOffset > 500) {
+            scrollTopBtn.style.opacity = '1';
+            scrollTopBtn.style.visibility = 'visible';
+        } else {
+            scrollTopBtn.style.opacity = '0';
+            scrollTopBtn.style.visibility = 'hidden';
+        }
                 ticking = false;
             });
             ticking = true;
@@ -1028,8 +1059,8 @@ function createMatrixRain() {
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
         }, 100);
     });
 }
@@ -1114,10 +1145,66 @@ function setupBasicFunctionality() {
     });
 }
 
+// Enhanced Section Title Interactions
+function setupSectionTitleInteractions() {
+    const sectionTitles = document.querySelectorAll('.section-title');
+    
+    sectionTitles.forEach(title => {
+        // Add data-text attribute for fallback visibility
+        const titleText = title.textContent.trim();
+        title.setAttribute('data-text', titleText);
+        
+        // Add floating particles around section titles
+        const particles = document.createElement('div');
+        particles.className = 'title-particles';
+        particles.innerHTML = `
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        `;
+        title.appendChild(particles);
+        
+        // Add click interaction for extra effect
+        title.addEventListener('click', () => {
+            title.style.transform = 'scale(1.1) rotate(2deg)';
+            setTimeout(() => {
+                title.style.transform = '';
+            }, 300);
+            
+            // Create ripple effect
+            const ripple = document.createElement('div');
+            ripple.className = 'title-ripple';
+            title.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 1000);
+        });
+        
+        // Add scroll-triggered animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'titleEntrance 1s ease-out forwards';
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(50px)';
+                    
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        observer.observe(title);
+    });
+}
+
 // Initialize matrix rain effect
 createMatrixRain();
-
-// Console message for cybersecurity theme
 console.log(`
 %c
  ██████╗██╗   ██╗██████╗ ███████╗██████╗ ███████╗███████╗ ██████╗
@@ -1132,3 +1219,24 @@ Built with performance, accessibility, and user experience in mind ��
 `, 'color: #00ff41; font-family: monospace;');
 
 console.log('%cPortfolio enhanced with advanced JavaScript features!', 'color: #00d4ff; font-size: 14px;');
+
+document.addEventListener("DOMContentLoaded", function() {
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    function activateNavLink() {
+        let scrollY = window.pageYOffset;
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 110; // adjust for navbar height
+            const sectionHeight = section.offsetHeight;
+            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                navLinks.forEach(link => link.classList.remove("active"));
+                const activeLink = document.querySelector('.nav-link[href="#' + section.id + '"]');
+                if (activeLink) activeLink.classList.add("active");
+            }
+        });
+    }
+
+    window.addEventListener("scroll", activateNavLink);
+    activateNavLink();
+}); 
