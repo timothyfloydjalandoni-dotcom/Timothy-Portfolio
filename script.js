@@ -31,7 +31,9 @@ function initializePortfolio() {
     setupHoverEffects();
     setupTerminalCursor();
         setupSkillsInteractions();
+        setupSkillTagLogos();
         setupProjectInteractions();
+        setupHeroAvatarParallax();
         
         // Performance and accessibility
         setupPerformanceOptimizations();
@@ -45,6 +47,115 @@ function initializePortfolio() {
         // Fallback to basic functionality
         setupBasicFunctionality();
     }
+}
+
+// Subtle parallax for hero avatar
+function setupHeroAvatarParallax() {
+    const avatar = document.querySelector('.hero-avatar');
+    if (!avatar) return;
+    const depth = 14; // subtle
+    let rafId;
+
+    function onMove(e) {
+        const rect = avatar.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = (e.clientX - cx) / rect.width;
+        const dy = (e.clientY - cy) / rect.height;
+        const rx = dy * depth;
+        const ry = -dx * depth;
+        cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+            avatar.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+        });
+    }
+
+    function onLeave() {
+        cancelAnimationFrame(rafId);
+        avatar.style.transform = '';
+    }
+
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseleave', onLeave);
+}
+
+// Add Font Awesome icons to skill tags based on their label
+function setupSkillTagLogos() {
+    const map = {
+        // Pentesting
+        'kali linux': 'fa-brands fa-linux',
+        'metasploit': 'fa-solid fa-shield-halved',
+        'burp suite': 'fa-solid fa-spider',
+        'nmap': 'fa-solid fa-network-wired',
+        'wireshark': 'fa-solid fa-water',
+        'john the ripper': 'fa-solid fa-key',
+        // Programming
+        'html': 'fa-brands fa-html5',
+        'css': 'fa-brands fa-css3-alt',
+        'javascript': 'fa-brands fa-js',
+        'python': 'fa-brands fa-python',
+        'c++': 'fa-solid fa-code',
+        'sql': 'fa-solid fa-database',
+        // Network
+        'firewall config': 'fa-solid fa-fire',
+        'ids/ips': 'fa-solid fa-shield',
+        'vpn setup': 'fa-solid fa-lock',
+        'network analysis': 'fa-solid fa-chart-line',
+        'siem': 'fa-solid fa-sitemap',
+        'network segmentation': 'fa-solid fa-diagram-project',
+        // Forensics
+        'autopsy': 'fa-solid fa-magnifying-glass',
+        'volatility': 'fa-solid fa-microchip',
+        'ftk imager': 'fa-solid fa-file-zipper',
+        'sleuth kit': 'fa-solid fa-folder-tree',
+        'encase': 'fa-solid fa-briefcase',
+        'memory analysis': 'fa-solid fa-memory'
+    };
+
+    const tags = document.querySelectorAll('.skill-tag');
+    tags.forEach(tag => {
+        const label = tag.textContent.trim().toLowerCase();
+        const iconClass = map[label];
+        if (iconClass) {
+            // Avoid duplicating icons if re-run
+            if (!tag.querySelector('i')) {
+                const icon = document.createElement('i');
+                icon.className = iconClass;
+                icon.setAttribute('aria-hidden', 'true');
+                icon.style.marginRight = '8px';
+                icon.style.fontSize = '1rem';
+                // set a subtle base color by technology; will be overridden on hover by CSS currentColor
+                const baseColorMap = {
+                    'fa-brands fa-html5': '#ff5412',
+                    'fa-brands fa-css3-alt': '#2965f1',
+                    'fa-brands fa-js': '#f7df1e',
+                    'fa-brands fa-python': '#3776ab',
+                    'fa-solid fa-code': '#ce3c3c',
+                    'fa-solid fa-database': '#8a2be2',
+                    'fa-brands fa-linux': '#00ff41',
+                    'fa-solid fa-shield-halved': '#00d4ff',
+                    'fa-solid fa-spider': '#ff0080',
+                    'fa-solid fa-network-wired': '#00bcd4',
+                    'fa-solid fa-water': '#00a8ff',
+                    'fa-solid fa-key': '#ffd200',
+                    'fa-solid fa-fire': '#ff6b6b',
+                    'fa-solid fa-shield': '#00e5ff',
+                    'fa-solid fa-lock': '#00ffa3',
+                    'fa-solid fa-chart-line': '#9b59b6',
+                    'fa-solid fa-sitemap': '#1abc9c',
+                    'fa-solid fa-diagram-project': '#e67e22',
+                    'fa-solid fa-magnifying-glass': '#4cd137',
+                    'fa-solid fa-microchip': '#16a085',
+                    'fa-solid fa-file-zipper': '#f39c12',
+                    'fa-solid fa-folder-tree': '#e74c3c',
+                    'fa-solid fa-briefcase': '#2ecc71',
+                    'fa-solid fa-memory': '#00d4ff'
+                };
+                icon.style.color = baseColorMap[iconClass] || 'currentColor';
+                tag.prepend(icon);
+            }
+        }
+    });
 }
 
 /**
@@ -1213,5 +1324,3 @@ document.addEventListener("DOMContentLoaded", function() {
     window.addEventListener("scroll", activateNavLink);
     activateNavLink();
 }); 
-
-
