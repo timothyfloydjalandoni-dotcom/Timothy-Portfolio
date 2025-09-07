@@ -34,6 +34,8 @@ function initializePortfolio() {
         setupSkillTagLogos();
         setupProjectInteractions();
         setupHeroAvatarParallax();
+        setupHeroID3DTilt();
+        setupBadge3DTiltAndFlip();
         
         // Performance and accessibility
         setupPerformanceOptimizations();
@@ -77,6 +79,75 @@ function setupHeroAvatarParallax() {
 
     window.addEventListener('mousemove', onMove);
     window.addEventListener('mouseleave', onLeave);
+}
+
+// 3D tilt for Cyberpunk ID in hero
+function setupHeroID3DTilt() {
+    const container = document.getElementById('hero-id3d');
+    if (!container) return;
+    const inner = container.querySelector('.id3d-inner');
+    const floatStrength = 12;
+    let rafId;
+
+    function onMove(e) {
+        const rect = container.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = (e.clientX - cx) / rect.width;
+        const dy = (e.clientY - cy) / rect.height;
+        const rx = dy * floatStrength;
+        const ry = -dx * floatStrength;
+        cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+            inner.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+        });
+    }
+
+    function onLeave() {
+        cancelAnimationFrame(rafId);
+        inner.style.transform = '';
+    }
+
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseleave', onLeave);
+}
+
+// 3D tilt + flip for hero badge
+function setupBadge3DTiltAndFlip() {
+    const container = document.getElementById('badge3d');
+    if (!container) return;
+    const card = document.getElementById('badge3dCard');
+    const strength = 12;
+    let rafId;
+
+    function onMove(e) {
+        const rect = container.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = (e.clientX - cx) / rect.width;
+        const dy = (e.clientY - cy) / rect.height;
+        const rx = dy * strength;
+        const ry = -dx * strength;
+        cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+            card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)` + (card.classList.contains('is-flipped') ? ' rotateY(180deg)' : '');
+        });
+    }
+
+    function onLeave() {
+        cancelAnimationFrame(rafId);
+        card.style.transform = card.classList.contains('is-flipped') ? 'rotateY(180deg)' : '';
+    }
+
+    function onFlip() {
+        const flipped = card.classList.toggle('is-flipped');
+        card.setAttribute('aria-pressed', String(flipped));
+    }
+
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseleave', onLeave);
+    card.addEventListener('click', onFlip);
+    card.addEventListener('keyup', (e) => { if (e.key === 'Enter' || e.key === ' ') onFlip(); });
 }
 
 // Add Font Awesome icons to skill tags based on their label
