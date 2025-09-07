@@ -1213,3 +1213,5 @@ document.addEventListener("DOMContentLoaded", function() {
     window.addEventListener("scroll", activateNavLink);
     activateNavLink();
 }); 
+
+
