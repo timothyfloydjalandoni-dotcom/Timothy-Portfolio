@@ -120,6 +120,7 @@ function setupBadge3DTiltAndFlip() {
     const strength = 12;
     let rafId;
 
+    
     function onMove(e) {
         const rect = container.getBoundingClientRect();
         const cx = rect.left + rect.width / 2;
