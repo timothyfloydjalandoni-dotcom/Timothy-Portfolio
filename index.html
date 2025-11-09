@@ -20,9 +20,10 @@
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="contact-footer-enhancements.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Audiowide&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <!-- Favicon -->
@@ -61,19 +62,19 @@
     <div class="background-effects">
         <div class="grid-overlay"></div>
         <div class="floating-particles"></div>
+        <!-- Matrix Rain Background Effect - Global -->
+        <div class="matrix-bg">
+            <canvas id="matrix-canvas"></canvas>
+        </div>
     </div>
 
     <main id="main-content">
 <!-- Hero Section -->
 <section class="hero" id="home">
     <div class="hero-container">
-        <header class="hero-content">
-            <div class="hero-badge" role="banner">
-                <i class="fas fa-shield-alt" aria-hidden="true"></i>
-                <span>Cybersecurity Student</span>
-            </div>
-            
-            <div class="terminal-intro">
+        <!-- Left Side: Terminal -->
+        <div class="hero-left">
+            <div class="terminal-box">
                 <div class="terminal-header">
                     <span class="terminal-dot red"></span>
                     <span class="terminal-dot yellow"></span>
@@ -81,108 +82,96 @@
                     <span class="terminal-title">terminal.sh</span>
                 </div>
                 <div class="terminal-body">
-                    <p><span class="prompt">$</span> whoami</p>
-                    <p class="typing-text" id="typing-text"></p>
-                    <p><span class="prompt">$</span> <span class="cursor">|</span></p>
+                    <p class="terminal-line"><span class="prompt">$</span> whoami</p>
+                    <p class="terminal-line typing-line">
+                        <span class="typing-text" id="typing-text"></span><span class="cursor-blink">|</span>
+                    </p>
                 </div>
             </div>
             
-            <h1 id="hero-title" class="hero-title">
-                Cybersecurity <span class="neon-text">Major</span>
+            <h1 class="hero-title">
+                <span class="title-cyan">Cybersecurity</span> <span class="title-green">Major</span>
             </h1>
             
             <p class="hero-subtitle">Protecting Digital Assets • Ethical Hacking • Security Research</p>
             
-            <div class="hero-features">
-                <div class="feature-item">
-                    <i class="fas fa-lock"></i>
+            <div class="hero-pills">
+                <button class="pill-btn pill-pentest">
+                    <i class="fas fa-shield-virus"></i>
                     <span>Penetration Testing</span>
-                </div>
-                <div class="feature-item">
+                </button>
+                <button class="pill-btn pill-forensics">
                     <i class="fas fa-search"></i>
                     <span>Digital Forensics</span>
-                </div>
-                <div class="feature-item">
+                </button>
+                <button class="pill-btn pill-network">
                     <i class="fas fa-network-wired"></i>
                     <span>Network Security</span>
-                </div>
+                </button>
             </div>
             
-            <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">
-                    <i class="fas fa-code"></i>
+            <div class="hero-cta">
+                <a href="#projects" class="cta-btn cta-green">
                     <span>View Projects</span>
-                    <div class="btn-glow"></div>
+                    <div class="btn-glow-green"></div>
                 </a>
-                <a href="#contact" class="btn btn-secondary">
-                    <i class="fas fa-envelope"></i>
+                <a href="#contact" class="cta-btn cta-blue">
                     <span>Get In Touch</span>
-                    <div class="btn-glow"></div>
-                </a>
-                <a href="#about" class="btn btn-tertiary">
-                    <i class="fas fa-user-secret"></i>
-                    <span>About Me</span>
-                    <div class="btn-glow"></div>
+                    <div class="btn-glow-blue"></div>
                 </a>
             </div>
-            
-            
-        </header>
-
-<!-- Hero Visual Section -->
-<div class="hero-visual">
-    <!-- 3D Cyberpunk ID Badge (Hero) -->
-    <div class="hero-id3d" id="hero-id3d" aria-label="3D Cyberpunk ID Badge">
-        <div class="id3d-card">
-            
-            <!-- FRONT -->
-            <div class="id3d-face id3d-front">
-                <div class="id3d-inner">
-                    <div class="id3d-glow"></div>
-                    <div class="id3d-glass"></div>
-                    <div class="id3d-header">
-                        <div class="id3d-chip"></div>
-                        <span class="id3d-title">CYBER ID</span>
+        </div>
+        
+        <!-- Right Side: Cyber ID Card -->
+        <div class="hero-right">
+            <div class="cyber-id-card">
+                <div class="id-card-glow"></div>
+                <div class="id-card-glass"></div>
+                
+                <div class="id-card-header">
+                    <div class="id-chip"></div>
+                    <span class="id-title">CYBER ID</span>
+                </div>
+                
+                <div class="id-card-body">
+                    <div class="id-photo-container">
+                        <div class="id-photo" style="background-image:url(videoframe_10507.png)"></div>
+                        <div class="id-photo-glow"></div>
                     </div>
-                    <div class="id3d-body">
-                        <div class="id3d-photo">
-                    <div class="id3d-photo">
-                    <div class="id3d-photo-img" style="background-image:url(videoframe_10507.png)"></div>
-                     <div class="id3d-photo-gloss"></div>
-                    </div>
-                            <div class="id3d-photo-gloss"></div>
-                        </div>
-                        <div class="id3d-info">
-                            <div class="id3d-name glitch" data-text="TIMOTHY FLOYD JALANDONI">TIMOTHY FLOYD JALANDONI</div>
-                            <div class="id3d-role">Cybersecurity Student</div>
-                            <div class="id3d-meta">
-                                <span>ID: 2500552</span>
-                                <span>SCHOOL: UNIVERSITY OF ST. LA SALLE </span>
+                    
+                    <div class="id-info">
+                        <div class="id-name">Timothy Floyd Jalandoni</div>
+                        <div class="id-role">Cybersecurity Student</div>
+                        <div class="id-details">
+                            <div class="id-detail-item">
+                                <span class="id-label">ID:</span>
+                                <span class="id-value">2500552</span>
+                            </div>
+                            <div class="id-detail-item">
+                                <span class="id-label">SCHOOL:</span>
+                                <span class="id-value">University of St. La Salle</span>
                             </div>
                         </div>
-                        <div class="id3d-qr">
-                            <div class="id3d-qr-box">
-                                <span></span><span></span><span></span><span></span>
-                                <span></span><span></span><span></span><span></span>
-                                <span></span><span></span><span></span><span></span>
-                                <span></span><span></span><span></span><span></span>
-                            </div>
-                            <div class="id3d-qr-caption">SCAN</div>
-                        </div>
-                    </div>
-                    <div class="id3d-footer">
-                        <div class="id3d-barcode"></div>
-                        <div class="id3d-seal"><i class="fas fa-shield-alt"></i></div>
-                        <div class="id3d-badge">USLS | CYBER</div>
                     </div>
                 </div>
-            </div>
-
-
-
+                
+                <div class="id-scan-section">
+                    <div class="scan-label">SCAN</div>
+                    <div class="scan-bar-container">
+                        <div class="scan-bar"></div>
+                    </div>
                 </div>
+                
+                <div class="id-card-footer">
+                    <div class="id-barcode"></div>
+                    <div class="id-seal">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="id-badge">USLS | CYBER</div>
+                </div>
+                
+                <div class="holographic-overlay"></div>
             </div>
-            <div class="scan-lines"></div>
         </div>
     </div>
     
@@ -197,9 +186,10 @@
     <!-- About Section -->
     <section id="about" class="about" aria-labelledby="about-title">
         <div class="container">
-            <h2 class="section-title" id="about-title">
+            <h2 class="section-title about-section-title" id="about-title">
                 <i class="fas fa-user-shield"></i>
                 <span>About Me</span>
+                <div class="title-underline"></div>
             </h2>
             <div class="about-content">
                 <div class="about-text">
@@ -234,10 +224,13 @@
                             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.specialties = [<span class="code-string">"Penetration Testing"</span>, <span class="code-string">"Digital Forensics"</span>, <span class="code-string">"Network Security"</span>]</p>
                             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.certifications = [<span class="code-string">"CEH"</span>, <span class="code-string">"OSCP"</span>, <span class="code-string">"CompTIA Security+"</span>]</p>
                         </div>
-                        <div class="code-footer">
-                            <span class="code-status">● Running</span>
-                            <span class="code-language">Python 3.9</span>
-                        </div>
+                    <div class="code-footer">
+                        <span class="code-status">
+                            <span class="status-dot-pulse"></span>
+                            Running...
+                        </span>
+                        <span class="code-language">Python 3.9</span>
+                    </div>
                     </div>
                     
                     <div class="about-description">
@@ -282,6 +275,10 @@
                         <div class="university-badge">
                             <i class="fas fa-award"></i>
                             <span>Top Ranked</span>
+                        </div>
+                        <div class="verified-badge">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Verified</span>
                         </div>
                     </div>
                     
@@ -346,8 +343,9 @@
                         </h3>
                         <div class="achievement-list">
                             <div class="achievement-item">
-                                <div class="achievement-icon">
+                                <div class="achievement-icon achievement-icon-trophy">
                                     <i class="fas fa-crown"></i>
+                                    <div class="icon-pulse"></div>
                                 </div>
                                 <div class="achievement-content">
                                     <h4>CTF Champion</h4>
@@ -357,8 +355,9 @@
                             </div>
                             
                             <div class="achievement-item">
-                                <div class="achievement-icon">
+                                <div class="achievement-icon achievement-icon-cert">
                                     <i class="fas fa-certificate"></i>
+                                    <div class="icon-pulse"></div>
                                 </div>
                                 <div class="achievement-content">
                                     <h4>Security Certification</h4>
@@ -368,8 +367,9 @@
                             </div>
                             
                             <div class="achievement-item">
-                                <div class="achievement-icon">
+                                <div class="achievement-icon achievement-icon-radar">
                                     <i class="fas fa-star"></i>
+                                    <div class="icon-pulse"></div>
                                 </div>
                                 <div class="achievement-content">
                                     <h4>Research Recognition</h4>
@@ -387,12 +387,16 @@
     <!-- Skills Section -->
     <section id="skills" class="skills" aria-labelledby="skills-title">
         <div class="container">
-            <h2 id="skills-title" class="section-title">
-                <i class="fas fa-cogs" aria-hidden="true"></i>
-                Skills & Expertise
-            </h2>
+            <div class="skills-header">
+                <h2 id="skills-title" class="section-title">
+                    <i class="fas fa-cogs" aria-hidden="true"></i>
+                    Skills & Expertise
+                </h2>
+                <p class="skills-subtitle">Technical competencies and specialized knowledge in cybersecurity</p>
+            </div>
             <div class="skills-grid">
-                <div class="skill-category" data-category="pentesting">
+                <div class="skill-category" data-category="pentesting" data-aos="fade-up">
+                    <div class="skill-glow"></div>
                     <div class="skill-header">
                         <div class="skill-icon">
                             <i class="fas fa-shield-virus"></i>
@@ -426,7 +430,8 @@
                     </div>
                 </div>
 
-                <div class="skill-category" data-category="programming">
+                <div class="skill-category" data-category="programming" data-aos="fade-up" data-aos-delay="100">
+                    <div class="skill-glow"></div>
                     <div class="skill-header">
                         <div class="skill-icon">
                             <i class="fas fa-code"></i>
@@ -437,8 +442,8 @@
                             <div class="level-bar">
                                 <div class="level-fill" style="width: 85%"></div>
                             </div>
+                        </div>
                     </div>
-                </div>
                     <div class="skill-description">
                         <p>Full-stack development with focus on security-first programming practices.</p>
                     </div>
@@ -460,7 +465,8 @@
                     </div>
                 </div>
 
-                <div class="skill-category" data-category="network">
+                <div class="skill-category" data-category="network" data-aos="fade-up" data-aos-delay="200">
+                    <div class="skill-glow"></div>
                     <div class="skill-header">
                         <div class="skill-icon">
                             <i class="fas fa-network-wired"></i>
@@ -471,8 +477,8 @@
                             <div class="level-bar">
                                 <div class="level-fill" style="width: 88%"></div>
                             </div>
+                        </div>
                     </div>
-                </div>
                     <div class="skill-description">
                         <p>Comprehensive network security implementation and monitoring solutions.</p>
                     </div>
@@ -494,7 +500,8 @@
                     </div>
                 </div>
 
-                <div class="skill-category" data-category="forensics">
+                <div class="skill-category" data-category="forensics" data-aos="fade-up" data-aos-delay="300">
+                    <div class="skill-glow"></div>
                     <div class="skill-header">
                         <div class="skill-icon">
                             <i class="fas fa-search"></i>
@@ -505,8 +512,8 @@
                             <div class="level-bar">
                                 <div class="level-fill" style="width: 82%"></div>
                             </div>
+                        </div>
                     </div>
-                </div>
                     <div class="skill-description">
                         <p>Digital evidence collection, analysis, and preservation for legal proceedings.</p>
                     </div>
@@ -534,12 +541,41 @@
     <!-- Projects Section -->
     <section id="projects" class="projects" aria-labelledby="projects-title">
         <div class="container">
-            <h2 id="projects-title" class="section-title">
-                <i class="fas fa-laptop-code" aria-hidden="true"></i>
-                Featured Projects
-            </h2>
+            <div class="projects-header">
+                <h2 id="projects-title" class="section-title">
+                    <i class="fas fa-laptop-code" aria-hidden="true"></i>
+                    Featured Projects
+                </h2>
+                <p class="projects-subtitle">Explore my cybersecurity projects and security solutions</p>
+            </div>
+            
+            <!-- Category Filter Buttons -->
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-th"></i>
+                    <span>All Projects</span>
+                </button>
+                <button class="filter-btn" data-filter="security">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Security</span>
+                </button>
+                <button class="filter-btn" data-filter="ai">
+                    <i class="fas fa-brain"></i>
+                    <span>AI/ML</span>
+                </button>
+                <button class="filter-btn" data-filter="web">
+                    <i class="fas fa-globe"></i>
+                    <span>Web</span>
+                </button>
+                <button class="filter-btn" data-filter="forensics">
+                    <i class="fas fa-search"></i>
+                    <span>Forensics</span>
+                </button>
+            </div>
+            
             <div class="projects-grid">
-                <div class="project-card featured" data-category="security">
+                <div class="project-card featured" data-category="security" data-aos="fade-up">
+                    <div class="project-glow"></div>
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-wifi"></i>
@@ -589,7 +625,8 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-category="ai">
+                <div class="project-card" data-category="ai" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-glow"></div>
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-user-secret"></i>
@@ -639,7 +676,8 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-category="web">
+                <div class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-glow"></div>
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-lock"></i>
@@ -689,7 +727,8 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-category="security">
+                <div class="project-card" data-category="security" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-glow"></div>
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-bug"></i>
@@ -739,7 +778,8 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-category="forensics">
+                <div class="project-card" data-category="forensics" data-aos="fade-up" data-aos-delay="400">
+                    <div class="project-glow"></div>
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-search"></i>
@@ -795,12 +835,15 @@
     <!-- Contact Section -->
     <section id="contact" class="contact" aria-labelledby="contact-title">
         <div class="container">
-            <h2 id="contact-title" class="section-title">
-                <i class="fas fa-terminal" aria-hidden="true"></i>
-                connect()
-            </h2>
+            <div class="contact-header">
+                <h2 id="contact-title" class="section-title">
+                    <i class="fas fa-terminal" aria-hidden="true"></i>
+                    connect()
+                </h2>
+                <p class="contact-subtitle">Get in touch with me for collaboration, opportunities, or just to say hello</p>
+            </div>
             <div class="contact-content">
-                <div class="contact-info">
+                <div class="contact-info" data-aos="fade-right">
                     <div class="terminal-contact">
                         <div class="terminal-header">
                             <span class="terminal-dot red"></span>
@@ -823,21 +866,21 @@
                         </div>
                     </div>
                     <div class="social-links">
-                        <a href="#" class="social-link">
+                        <a href="#" class="social-link" aria-label="GitHub">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="#" class="social-link">
+                        <a href="#" class="social-link" aria-label="LinkedIn">
                             <i class="fab fa-linkedin"></i>
                         </a>
-                        <a href="#" class="social-link">
+                        <a href="#" class="social-link" aria-label="Twitter">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="#" class="social-link">
+                        <a href="#" class="social-link" aria-label="Email">
                             <i class="fas fa-envelope"></i>
                         </a>
                     </div>
                 </div>
-<form class="contact-form" action="#" method="POST" novalidate>
+<form class="contact-form" action="#" method="POST" novalidate data-aos="fade-left">
     <div class="form-group">
         <label for="name">Full Name <span class="required" aria-label="required">*</span></label>
         <input type="text" id="name" name="name" required 
@@ -880,17 +923,19 @@
     </section>
 <!-- Footer -->
 <footer class="footer">
-    <div class="footer-content">
-        <div class="footer-left">
-            <div class="footer-logo">
-                <i class="fas fa-shield-alt"></i>
-                <span>Personal Portfolio</span>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-left">
+                <div class="footer-logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Personal Portfolio</span>
+                </div>
+                <p>Securing the digital future, one line of code at a time.</p>
             </div>
-            <p>Securing the digital future, one line of code at a time.</p>
-        </div>
-        <div class="footer-right">
-            <p>&copy; 2025 Timothy Floyd Jalandoni. All rights reserved.</p>
-            <p>Built with <span class="neon-text">❤️</span> and lots of coffee</p>
+            <div class="footer-right">
+                <p>&copy; 2025 Timothy Floyd Jalandoni. All rights reserved.</p>
+                <p>Built with <span class="neon-text">❤️</span> and lots of coffee</p>
+            </div>
         </div>
     </div>
 </footer>
@@ -899,4 +944,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
