@@ -120,7 +120,6 @@ function setupBadge3DTiltAndFlip() {
     const strength = 12;
     let rafId;
 
-    
     function onMove(e) {
         const rect = container.getBoundingClientRect();
         const cx = rect.left + rect.width / 2;
@@ -303,57 +302,27 @@ function setupTypingAnimation() {
     const typingElement = document.getElementById('typing-text');
     if (!typingElement) return;
 
-    const messages = [
-        'Cybersecurity Student',
-        'Ethical Hacker',
-        'Penetration Tester',
-        'Security Researcher',
-        'Digital Forensics Analyst',
-        'Bug Bounty Hunter'
-    ];
-
-    let messageIndex = 0;
+    const message = 'Penetration Tester';
     let charIndex = 0;
-    let isDeleting = false;
     let typingSpeed = 100;
     let animationId;
 
     function typeMessage() {
-        const currentMessage = messages[messageIndex];
-        
-        if (isDeleting) {
-            typingElement.textContent = currentMessage.substring(0, charIndex - 1);
-            charIndex--;
-            typingSpeed = 50;
-        } else {
-            typingElement.textContent = currentMessage.substring(0, charIndex + 1);
+        if (charIndex < message.length) {
+            typingElement.textContent = message.substring(0, charIndex + 1);
             charIndex++;
-            typingSpeed = 100;
+            animationId = setTimeout(typeMessage, typingSpeed);
         }
-
-        // Add cursor effect
-        typingElement.innerHTML += '<span class="cursor">|</span>';
-
-        if (!isDeleting && charIndex === currentMessage.length) {
-            typingSpeed = 2000;
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            messageIndex = (messageIndex + 1) % messages.length;
-            typingSpeed = 500;
-        }
-
-        animationId = setTimeout(typeMessage, typingSpeed);
     }
 
-    // Start typing animation
-    setTimeout(typeMessage, 1000);
+    // Start typing animation after a short delay
+    setTimeout(typeMessage, 1500);
 
     // Pause animation when tab is not visible
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
             clearTimeout(animationId);
-        } else {
+        } else if (charIndex < message.length) {
             typeMessage();
         }
     });
@@ -923,27 +892,63 @@ function setupSkillsInteractions() {
     });
 }
 
+// Skills Scroll Animations
+function setupSkillsScrollAnimations() {
+    const skillCards = document.querySelectorAll('.skill-category[data-aos="fade-up"]');
+    
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('aos-animate');
+                }, index * 100);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    skillCards.forEach(card => {
+        observer.observe(card);
+    });
+}
+
 // Enhanced skill level animations
-function animateSkillLevels() {
+function setupSkillLevelAnimations() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const levelFill = entry.target.querySelector('.level-fill');
-                if (levelFill) {
-                    const width = levelFill.style.width;
+                if (levelFill && !levelFill.classList.contains('animated')) {
+                    levelFill.classList.add('animated');
+                    const width = levelFill.style.width || window.getComputedStyle(levelFill).width;
                     levelFill.style.width = '0%';
+                    
+                    // Trigger reflow
+                    levelFill.offsetHeight;
+                    
+                    // Animate to target width
                     setTimeout(() => {
                         levelFill.style.width = width;
-                    }, 100);
+                    }, 200);
                 }
             }
         });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.3 });
     
     const skillCategories = document.querySelectorAll('.skill-category');
     skillCategories.forEach(category => {
         observer.observe(category);
     });
+}
+
+// Legacy function for backward compatibility
+function animateSkillLevels() {
+    setupSkillLevelAnimations();
 }
 
 // Enhanced skill details modal
@@ -1151,75 +1156,213 @@ function setupAccessibilityFeatures() {
     });
 }
 
-// Matrix Rain Background (entire website)
+// Matrix Rain Background - Global (Entire Website)
 function createMatrixRain() {
-    const canvas = document.createElement('canvas');
+    const canvas = document.getElementById('matrix-canvas');
+    if (!canvas) return;
+    
     const ctx = canvas.getContext('2d');
+    let animationId;
+    let drops = [];
 
-    // Style so it covers the entire page
-    canvas.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: -1;  /* stays behind all content */
-        opacity: 0.45;
-    `;
-
-    document.body.appendChild(canvas);
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-    const charArray = chars.split('');
-    const fontSize = 20;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops = [];
-
-    // Initialize drops
-    for (let x = 0; x < columns; x++) {
-        drops[x] = Math.random() * -100;
-    }
-
-    function draw() {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.25)'; // darker background for contrast
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        for (let i = 0; i < drops.length; i++) {
-            const text = charArray[Math.floor(Math.random() * charArray.length)];
-
-            ctx.fillStyle = '#00ff41';
-            ctx.font = `bold ${fontSize}px monospace`;
-
-            // Glow effect
-            ctx.shadowColor = '#00ff41';
-            ctx.shadowBlur = 12;
-
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-            ctx.shadowBlur = 0;
-
-            drops[i]++;
-
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        // Recalculate columns based on new width
+        const fontSize = 14;
+        const columns = Math.floor(canvas.width / fontSize);
+        
+        // Adjust drops array to match new column count
+        if (drops.length < columns) {
+            while (drops.length < columns) {
+                drops.push(Math.random() * -100);
             }
+        } else if (drops.length > columns) {
+            drops = drops.slice(0, columns);
         }
     }
 
-    setInterval(draw, 80);
+    function initMatrix() {
+        resizeCanvas();
+        
+        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const charArray = chars.split('');
+        const fontSize = 14;
+        const columns = Math.floor(canvas.width / fontSize);
+        
+        // Initialize drops if empty
+        if (drops.length === 0) {
+            for (let x = 0; x < columns; x++) {
+                drops[x] = Math.random() * -100;
+            }
+        }
 
-    // Resize when window resizes
+        function draw() {
+            // Semi-transparent background for trailing effect
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.04)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = charArray[Math.floor(Math.random() * charArray.length)];
+
+                // Varying opacity for depth (more subtle for global effect)
+                const opacity = Math.random() * 0.4 + 0.3;
+                ctx.fillStyle = `rgba(0, 255, 136, ${opacity})`;
+                ctx.font = `bold ${fontSize}px 'JetBrains Mono', monospace`;
+
+                // Subtle glow effect
+                ctx.shadowColor = '#00FF88';
+                ctx.shadowBlur = 6;
+
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                ctx.shadowBlur = 0;
+
+                drops[i]++;
+
+                // Reset drop when it goes off screen
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+            }
+
+            animationId = requestAnimationFrame(draw);
+        }
+
+        // Start animation
+        draw();
+    }
+
+    // Initialize matrix rain
+    initMatrix();
+
+    // Handle window resize
+    let resizeTimeout;
     window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+            initMatrix();
+        }, 250);
+    });
+
+    // Pause animation when tab is not visible (performance optimization)
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+        } else {
+            initMatrix();
+        }
     });
 }
 
-// Start effect
-createMatrixRain();
+// Initialize matrix rain when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    createMatrixRain();
+    setupProjectFilters();
+    setupProjectScrollAnimations();
+    setupSkillsScrollAnimations();
+    setupSkillLevelAnimations();
+    setupContactScrollAnimations();
+});
+
+// Projects Filter Functionality
+function setupProjectFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const filterValue = button.getAttribute('data-filter');
+
+            // Update active button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            // Filter project cards
+            projectCards.forEach((card, index) => {
+                const cardCategory = card.getAttribute('data-category');
+                
+                if (filterValue === 'all' || cardCategory === filterValue) {
+                    card.classList.remove('filtered-out');
+                    card.classList.add('filtered-in');
+                    // Add delay for staggered animation
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0) scale(1)';
+                        card.style.maxHeight = '1000px';
+                        card.style.margin = '';
+                        card.style.padding = '';
+                    }, index * 50);
+                } else {
+                    card.classList.add('filtered-out');
+                    card.classList.remove('filtered-in');
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        card.style.maxHeight = '0';
+                        card.style.margin = '0';
+                        card.style.padding = '0';
+                    }, 200);
+                }
+            });
+        });
+    });
+}
+
+// Projects Scroll Animations
+function setupProjectScrollAnimations() {
+    const projectCards = document.querySelectorAll('.project-card[data-aos="fade-up"]');
+    
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('aos-animate');
+                }, index * 100);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    projectCards.forEach(card => {
+        observer.observe(card);
+    });
+}
+
+// Contact Section Scroll Animations
+function setupContactScrollAnimations() {
+    const contactElements = document.querySelectorAll('.contact-info[data-aos], .contact-form[data-aos]');
+    
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('aos-animate');
+                }, 100);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    contactElements.forEach(element => {
+        observer.observe(element);
+    });
+}
 
 // Skill demo and certification functions
 function showSkillDemo(category) {
@@ -1359,8 +1502,7 @@ function setupSectionTitleInteractions() {
     });
 }
 
-// Initialize matrix rain effect
-createMatrixRain();
+// Matrix rain is initialized in DOMContentLoaded event
 console.log(`
 %c
  ██████╗██╗   ██╗██████╗ ███████╗██████╗ ███████╗███████╗ ██████╗
